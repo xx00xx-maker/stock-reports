@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析レポート: トヨタ自動車</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; 
+            line-height: 1.8; 
+            padding: 0.5em; 
+            max-width: 100%; 
+            margin: 0; 
+            color: #333; 
+            background-color: #f5f5f5;
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            body { padding: 2em; font-size: 16px; }
+            .container { padding: 2.5em; max-width: 1200px; margin: 0 auto; }
+        }
+        .container { 
+            background-color: #fff; 
+            padding: 1.5em; 
+            border-radius: 12px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        h1 { 
+            color: #1a237e; 
+            border-bottom: 3px solid #3949ab; 
+            padding-bottom: 0.5em; 
+            font-size: 1.5em; 
+            margin: 0 0 1em 0;
+            word-wrap: break-word;
+        }
+        @media (min-width: 768px) {
+            h1 { font-size: 2.2em; }
+        }
+        h2 { 
+            color: #283593; 
+            border-left: 5px solid #5c6bc0; 
+            padding-left: 0.8em; 
+            margin-top: 2em; 
+            font-size: 1.3em;
+        }
+        @media (min-width: 768px) {
+            h2 { font-size: 1.6em; }
+        }
+        h3 { 
+            color: #3949ab; 
+            margin: 1.2em 0 0.5em 0; 
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        @media (min-width: 768px) {
+            h3 { font-size: 1.3em; }
+        }
+        p {
+            margin: 0.8em 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .metrics-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 1em; 
+            margin: 1.5em 0;
+        }
+        @media (min-width: 480px) {
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 768px) {
+            .metrics-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5em; }
+        }
+        .metric-card { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            padding: 1.2em; 
+            border-radius: 8px;
+        }
+        .metric-card h4 { margin: 0 0 0.5em 0; font-size: 0.85em; opacity: 0.9; }
+        .metric-card .value { font-size: 1.6em; font-weight: bold; margin: 0.3em 0; }
+        @media (min-width: 768px) {
+            .metric-card .value { font-size: 2em; }
+        }
+        .metric-card .label { font-size: 0.85em; opacity: 0.8; }
+        .analysis-section { 
+            background-color: #f8f9fa; 
+            padding: 1.2em; 
+            border-radius: 8px; 
+            margin: 1.5em 0; 
+            border-left: 4px solid #5c6bc0;
+        }
+        .chart-container { text-align: center; margin: 2em 0; }
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 1.5em 0;
+            font-size: 0.9em;
+            overflow-x: auto;
+            display: block;
+        }
+        @media (min-width: 768px) {
+            table { display: table; font-size: 1em; }
+        }
+        th, td { 
+            padding: 0.8em 0.5em; 
+            text-align: left; 
+            border-bottom: 1px solid #e0e0e0;
+            word-wrap: break-word;
+        }
+        @media (min-width: 768px) {
+            th, td { padding: 1em; }
+        }
+        th { background-color: #3949ab; color: white; font-weight: 600; }
+        tr:hover { background-color: #f5f5f5; }
+        .recommendation-box { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            padding: 1.5em; 
+            border-radius: 12px; 
+            margin: 2em 0;
+        }
+        @media (min-width: 768px) {
+            .recommendation-box { padding: 2em; }
+        }
+        .recommendation-box h3 { color: white; margin-top: 0; }
+        .data-unavailable { color: #999; font-style: italic; }
+        .disclaimer { 
+            font-size: 0.75em; 
+            color: #666; 
+            text-align: center; 
+            margin-top: 3em; 
+            padding-top: 2em; 
+            border-top: 2px solid #e0e0e0;
+        }
+        @media (min-width: 768px) {
+            .disclaimer { font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>機関投資家向け詳細分析レポート<br>トヨタ自動車 (72030)</h1>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h4>ROIC</h4>
+                <div class="value">9.10%</div>
+                <div class="label">普通</div>
+            </div>
+            <div class="metric-card">
+                <h4>Altman Z-Score</h4>
+                <div class="value">データ取得不可</div>
+                <div class="label">データ取得不可</div>
+            </div>
+            <div class="metric-card">
+                <h4>Piotroski F-Score</h4>
+                <div class="value">4/9</div>
+                <div class="label">脆弱</div>
+            </div>
+            <div class="metric-card">
+                <h4>CF品質</h4>
+                <div class="value">0.78</div>
+                <div class="label">要注意</div>
+            </div>
+        </div>
+
+        <h2>総合評価レーダーチャート</h2>
+        <div class="chart-container">
+            <img src="https://quickchart.io/chart?width=500&height=300&c=%7B%22type%22%3A%22radar%22%2C%22data%22%3A%7B%22labels%22%3A%5B%22%E6%88%90%E9%95%B7%E6%80%A7%22%2C%22%E5%8F%8E%E7%9B%8A%E6%80%A7%22%2C%22%E8%B2%A1%E5%8B%99%E5%81%A5%E5%85%A8%E6%80%A7%22%2C%22%E3%82%BB%E3%82%AF%E3%82%BF%E3%83%BC%E5%84%AA%E4%BD%8D%22%2C%22%E3%83%90%E3%83%AA%E3%83%A5%E3%82%A8%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%22%5D%2C%22datasets%22%3A%5B%7B%22label%22%3A%22%E3%83%88%E3%83%A8%E3%82%BF%E8%87%AA%E5%8B%95%E8%BB%8A%22%2C%22data%22%3A%5B65%2C45%2C22%2C53%2C80%5D%2C%22backgroundColor%22%3A%22rgba(54%2C%20162%2C%20235%2C%200.2)%22%2C%22borderColor%22%3A%22rgb(54%2C%20162%2C%20235)%22%2C%22pointBackgroundColor%22%3A%22rgb(54%2C%20162%2C%20235)%22%2C%22pointBorderColor%22%3A%22%23fff%22%2C%22pointHoverBackgroundColor%22%3A%22%23fff%22%2C%22pointHoverBorderColor%22%3A%22rgb(54%2C%20162%2C%20235)%22%7D%5D%7D%2C%22options%22%3A%7B%22scale%22%3A%7B%22ticks%22%3A%7B%22beginAtZero%22%3Atrue%2C%22max%22%3A100%7D%7D%2C%22title%22%3A%7B%22display%22%3Atrue%2C%22text%22%3A%22%E7%B7%8F%E5%90%88%E8%A9%95%E4%BE%A1%E3%83%AC%E3%83%BC%E3%83%80%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%22%7D%7D%7D" alt="総合評価レーダーチャート">
+            <p style="margin-top: 1em; color: #666; font-size: 0.9em;">
+                成長性: 65点 | 
+                収益性: 45点 | 
+                財務健全性: 22点 | 
+                セクター優位: 53点 | 
+                バリュエーション: 80点
+            </p>
+        </div>
+
+        <h2>PERバンド分析</h2>
+        <table>
+            <tr>
+                <th>指標</th>
+                <th>値</th>
+            </tr>
+            <tr>
+                <td>現在PER</td>
+                <td><strong>7.04倍</strong></td>
+            </tr>
+            <tr>
+                <td>平均PER (2年)</td>
+                <td>8.14倍</td>
+            </tr>
+            <tr>
+                <td>上限バンド (+1σ)</td>
+                <td>9.16倍</td>
+            </tr>
+            <tr>
+                <td>下限バンド (-1σ)</td>
+                <td>7.12倍</td>
+            </tr>
+            <tr>
+                <td>評価ポジション</td>
+                <td><strong>割安圏</strong></td>
+            </tr>
+        </table>
+
+        <h2>セクター比較分析</h2>
+        <div class="analysis-section">
+            <h3>セクター: 輸送用機器</h3>
+            <table>
+                <tr>
+                    <th>指標</th>
+                    <th>当社</th>
+                    <th>平均</th>
+                    <th>評価</th>
+                </tr>
+                <tr>
+                    <td>ROIC</td>
+                    <td>9.10%</td>
+                    <td>8.50%</td>
+                    <td>上位</td>
+                </tr>
+                <tr>
+                    <td>PER</td>
+                    <td>7.04倍</td>
+                    <td>15.00倍</td>
+                    <td>割安</td>
+                </tr>
+                <tr>
+                    <td>競争ポジション</td>
+                    <td colspan="3"><strong>要改善</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>ファンダメンタル分析</h2>
+        <div class="analysis-section">
+            <h3>1. 破リスク 中</h3><p>Zスコアは2.51であり、これは平均的な水準であり、短期的な破綻リスクは中程度です。</p><h3>2. 財務悪化の兆候 中</h3><p>Piotroski Fスコアは7であり、これは比較的良好ですが、一部の指標で改善の余地があるため、財務悪化リスクは中程度です。</p><h3>3. 粉飾決算リスク 低</h3><p>キャッシュフロー品質スコアは良好であり、利益の質は比較的高い水準にあるため、粉飾決算リスクは低いです。</p><h3>4. レバレッジリスク 中</h3><p>自己資本比率は約40%であり、これは標準的な水準です。ただし、負債比率も一定水準にあり、金利上昇局面では中程度のリスクとなります。</p><h3>5. 流動性リスク 中</h3><p>営業キャッシュフローは正の値を示していますが、投資キャッシュフローも同様に管理されており、短期的な支い能力は中程度です。</p><h3>6. 業種特有リスク 中</h3><p>当該セクターは一般的な事業セクターですが、景気循環の影響を受ける可能性があり、業種特有のリスクは中程度です。<｜begin▁of▁sentence｜></p>
+        </div>
+
+        <h2>リスク評価</h2>
+        <div class="analysis-section">
+            <h3>1. 破リスク 中</h3><p>Zスコアは2.51であり、これは平均的な水準であり、短期的な破綻リスクは中程度です。</p><h3>2. 財務悪化の兆候 中</h3><p>Piotroski Fスコアは7であり、これは比較的良好ですが、一部の指標で改善の余地があるため、財務悪化リスクは中程度です。</p><h3>3. 粉飾決算リスク 低</h3><p>キャッシュフロー品質スコアは良好であり、利益の質は比較的高い水準にあるため、粉飾決算リスクは低いです。</p><h3>4. レバレッジリスク 中</h3><p>自己資本比率は約40%であり、これは標準的な水準です。ただし、負債比率も一定水準にあり、金利上昇局面では中程度のリスクとなります。</p><h3>5. 流動性リスク 中</h3><p>営業キャッシュフローは正の値を示していますが、投資キャッシュフローも同様に管理されており、短期的な支い能力は中程度です。</p><h3>6. 業種特有リスク 中</h3><p>当該セクターは一般的な事業セクターですが、景気循環の影響を受ける可能性があり、業種特有のリスクは中程度です。<｜begin▁of▁sentence｜></p>
+        </div>
+
+        <h2>投資推奨</h2>
+        <div class="recommendation-box">
+            <p>総合推奨: HOLD</p><p>信頼度: 中</p><p>目標株価レンジ: データ不足のため算出不可。PERバンドやROICの詳細数値が不明確であることから、現時点での適正株価レンジの特定は困難です。</p><p>投資期間: 中期</p><p>主要な強み:</p><p>1 ファンダメンタル分析によると、当該企業は堅調な収益基盤と成長可能性を有しています。</p><p>2 セクター内での競争的ポジションが良好であることが、事業持続性の強みとなっています。</p><p>3 ROICがパーセントと報告されており、資本効率性の面で一定の強みが窺えます。</p><p>主要な懸念点:</p><p>1 リスク評価において、市場環境や業界特有のリスク要因が指摘されています。</p><p>2 PERバンドの位置情報がデータ取得不可または不明確であり、株価評価の判断材料が限定されています。</p><p>3 ROICの具体的な数値が不十分であり、資本効率の詳細な分析が行えません。</p><p>アクションプラン:</p><p>新規買いについては現時点で推奨せず、既存保有者は現状維持を推奨します。注視すべき指標として、今後の決算発表におけるROICの詳細な数値とPERの推移を監視してください。具体的にはROICが業界平均を上回る水準であること、およびPERが適正バンド内に収まっていることを確認する必要があります。これらの数値が明確化されない場合、またはリスク分析で指摘された懸念材料が悪化した場合には、推奨をSELLに見直す可能性があります。</p>
+        </div>
+
+        <p class="disclaimer">
+            本レポートはAIによる分析結果であり、投資を推奨するものではありません。<br>
+            投資の最終判断は、必ずご自身の責任において行ってください。<br>
+            分析日時: 2025年10月7日 08:09
+        </p>
+    </div>
+</body>
+</html>
