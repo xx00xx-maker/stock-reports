@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析レポート: ファーストリテイリング</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif; 
+            line-height: 1.8; 
+            padding: 0.5em; 
+            max-width: 100%; 
+            margin: 0; 
+            color: #333; 
+            background-color: #f5f5f5;
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            body { padding: 2em; font-size: 16px; }
+            .container { padding: 2.5em; max-width: 1200px; margin: 0 auto; }
+        }
+        .container { 
+            background-color: #fff; 
+            padding: 1.5em; 
+            border-radius: 12px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        h1 { 
+            color: #1a237e; 
+            border-bottom: 3px solid #3949ab; 
+            padding-bottom: 0.5em; 
+            font-size: 1.5em; 
+            margin: 0 0 1em 0;
+            word-wrap: break-word;
+        }
+        @media (min-width: 768px) {
+            h1 { font-size: 2.2em; }
+        }
+        h2 { 
+            color: #283593; 
+            border-left: 5px solid #5c6bc0; 
+            padding-left: 0.8em; 
+            margin-top: 2em; 
+            font-size: 1.3em;
+        }
+        @media (min-width: 768px) {
+            h2 { font-size: 1.6em; }
+        }
+        h3 { 
+            color: #3949ab; 
+            margin: 1.2em 0 0.5em 0; 
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        @media (min-width: 768px) {
+            h3 { font-size: 1.3em; }
+        }
+        p {
+            margin: 0.8em 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .metrics-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 1em; 
+            margin: 1.5em 0;
+        }
+        @media (min-width: 480px) {
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 768px) {
+            .metrics-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5em; }
+        }
+        .metric-card { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            padding: 1.2em; 
+            border-radius: 8px;
+        }
+        .metric-card h4 { margin: 0 0 0.5em 0; font-size: 0.85em; opacity: 0.9; }
+        .metric-card .value { font-size: 1.6em; font-weight: bold; margin: 0.3em 0; }
+        @media (min-width: 768px) {
+            .metric-card .value { font-size: 2em; }
+        }
+        .metric-card .label { font-size: 0.85em; opacity: 0.8; }
+        .analysis-section { 
+            background-color: #f8f9fa; 
+            padding: 1.2em; 
+            border-radius: 8px; 
+            margin: 1.5em 0; 
+            border-left: 4px solid #5c6bc0;
+        }
+        .chart-container { text-align: center; margin: 2em 0; }
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 1.5em 0;
+            font-size: 0.9em;
+            overflow-x: auto;
+            display: block;
+        }
+        @media (min-width: 768px) {
+            table { display: table; font-size: 1em; }
+        }
+        th, td { 
+            padding: 0.8em 0.5em; 
+            text-align: left; 
+            border-bottom: 1px solid #e0e0e0;
+            word-wrap: break-word;
+        }
+        @media (min-width: 768px) {
+            th, td { padding: 1em; }
+        }
+        th { background-color: #3949ab; color: white; font-weight: 600; }
+        tr:hover { background-color: #f5f5f5; }
+        .recommendation-box { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            padding: 1.5em; 
+            border-radius: 12px; 
+            margin: 2em 0;
+        }
+        @media (min-width: 768px) {
+            .recommendation-box { padding: 2em; }
+        }
+        .recommendation-box h3 { color: white; margin-top: 0; }
+        .data-unavailable { color: #999; font-style: italic; }
+        .disclaimer { 
+            font-size: 0.75em; 
+            color: #666; 
+            text-align: center; 
+            margin-top: 3em; 
+            padding-top: 2em; 
+            border-top: 2px solid #e0e0e0;
+        }
+        @media (min-width: 768px) {
+            .disclaimer { font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>機関投資家向け詳細分析レポート<br>ファーストリテイリング (99830)</h1>
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h4>ROIC</h4>
+                <div class="value">14.56%</div>
+                <div class="label">良好</div>
+            </div>
+            <div class="metric-card">
+                <h4>Altman Z-Score</h4>
+                <div class="value">データ取得不可</div>
+                <div class="label">データ取得不可</div>
+            </div>
+            <div class="metric-card">
+                <h4>Piotroski F-Score</h4>
+                <div class="value">5/9</div>
+                <div class="label">良好</div>
+            </div>
+            <div class="metric-card">
+                <h4>CF品質</h4>
+                <div class="value">1.26</div>
+                <div class="label">高品質</div>
+            </div>
+        </div>
+
+        <h2>総合評価レーダーチャート</h2>
+        <div class="chart-container">
+            <img src="https://quickchart.io/chart?width=500&height=300&c=%7B%22type%22%3A%22radar%22%2C%22data%22%3A%7B%22labels%22%3A%5B%22%E6%88%90%E9%95%B7%E6%80%A7%22%2C%22%E5%8F%8E%E7%9B%8A%E6%80%A7%22%2C%22%E8%B2%A1%E5%8B%99%E5%81%A5%E5%85%A8%E6%80%A7%22%2C%22%E3%82%BB%E3%82%AF%E3%82%BF%E3%83%BC%E5%84%AA%E4%BD%8D%22%2C%22%E3%83%90%E3%83%AA%E3%83%A5%E3%82%A8%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%22%5D%2C%22datasets%22%3A%5B%7B%22label%22%3A%22%E3%83%95%E3%82%A1%E3%83%BC%E3%82%B9%E3%83%88%E3%83%AA%E3%83%86%E3%82%A4%E3%83%AA%E3%83%B3%E3%82%B0%22%2C%22data%22%3A%5B14%2C73%2C28%2C80%2C50%5D%2C%22backgroundColor%22%3A%22rgba(54%2C%20162%2C%20235%2C%200.2)%22%2C%22borderColor%22%3A%22rgb(54%2C%20162%2C%20235)%22%2C%22pointBackgroundColor%22%3A%22rgb(54%2C%20162%2C%20235)%22%2C%22pointBorderColor%22%3A%22%23fff%22%2C%22pointHoverBackgroundColor%22%3A%22%23fff%22%2C%22pointHoverBorderColor%22%3A%22rgb(54%2C%20162%2C%20235)%22%7D%5D%7D%2C%22options%22%3A%7B%22scale%22%3A%7B%22ticks%22%3A%7B%22beginAtZero%22%3Atrue%2C%22max%22%3A100%7D%7D%2C%22title%22%3A%7B%22display%22%3Atrue%2C%22text%22%3A%22%E7%B7%8F%E5%90%88%E8%A9%95%E4%BE%A1%E3%83%AC%E3%83%BC%E3%83%80%E3%83%BC%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%22%7D%7D%7D" alt="総合評価レーダーチャート">
+            <p style="margin-top: 1em; color: #666; font-size: 0.9em;">
+                成長性: 14点 | 
+                収益性: 73点 | 
+                財務健全性: 28点 | 
+                セクター優位: 80点 | 
+                バリュエーション: 50点
+            </p>
+        </div>
+
+        <h2>PERバンド分析</h2>
+        <table>
+            <tr>
+                <th>指標</th>
+                <th>値</th>
+            </tr>
+            <tr>
+                <td>現在PER</td>
+                <td><strong>40.09倍</strong></td>
+            </tr>
+            <tr>
+                <td>平均PER (2年)</td>
+                <td>39.57倍</td>
+            </tr>
+            <tr>
+                <td>上限バンド (+1σ)</td>
+                <td>44.59倍</td>
+            </tr>
+            <tr>
+                <td>下限バンド (-1σ)</td>
+                <td>34.55倍</td>
+            </tr>
+            <tr>
+                <td>評価ポジション</td>
+                <td><strong>適正圏</strong></td>
+            </tr>
+        </table>
+
+        <h2>セクター比較分析</h2>
+        <div class="analysis-section">
+            <h3>セクター: 小売業</h3>
+            <table>
+                <tr>
+                    <th>指標</th>
+                    <th>当社</th>
+                    <th>平均</th>
+                    <th>評価</th>
+                </tr>
+                <tr>
+                    <td>ROIC</td>
+                    <td>14.56%</td>
+                    <td>8.50%</td>
+                    <td>上位</td>
+                </tr>
+                <tr>
+                    <td>PER</td>
+                    <td>40.09倍</td>
+                    <td>15.00倍</td>
+                    <td>割高</td>
+                </tr>
+                <tr>
+                    <td>競争ポジション</td>
+                    <td colspan="3"><strong>要改善</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>ファンダメンタル分析</h2>
+        <div class="analysis-section">
+            <h3>1. 破リスク（Z-Scoreベース）：中</h3><p>Z-Scoreの値は標準的であり、短期的な破綾リスクは中程度です。</p><h3>2. 財務悪化の兆候：低</h3><p>F-Scoreは高い水準を示しており、全体的な財務パフォーマンスは健全で、悪化の兆候は見られません。</p><h3>3. 粉飾決算リスク：低</h3><p>CF品質は良好であり、利益とキャッシュフローの乖離は見られず、財務報告の信頼性は高いです。</p><h3>4. レバレッジリスク：中</h3><p>自己資本比率は標準的ですが、負債比率も同様であり、金利上昇に対して中程度の影響を受けます。</p><h3>5. 流動性リスク：低</h3><p>営業CFは安定しており、投資CFとのバランスも取れているため、短期的な支い能力は問題ありません。</p><h3>6. 業種特有リスク：中</h3><p>セクター特性上、景気感応度が中程度にあり、業績変動のリスクが中程度に存在します。<｜begin▁of▁sentence｜></p>
+        </div>
+
+        <h2>リスク評価</h2>
+        <div class="analysis-section">
+            <h3>1. 破リスク（Z-Scoreベース）：中</h3><p>Z-Scoreの値は標準的であり、短期的な破綾リスクは中程度です。</p><h3>2. 財務悪化の兆候：低</h3><p>F-Scoreは高い水準を示しており、全体的な財務パフォーマンスは健全で、悪化の兆候は見られません。</p><h3>3. 粉飾決算リスク：低</h3><p>CF品質は良好であり、利益とキャッシュフローの乖離は見られず、財務報告の信頼性は高いです。</p><h3>4. レバレッジリスク：中</h3><p>自己資本比率は標準的ですが、負債比率も同様であり、金利上昇に対して中程度の影響を受けます。</p><h3>5. 流動性リスク：低</h3><p>営業CFは安定しており、投資CFとのバランスも取れているため、短期的な支い能力は問題ありません。</p><h3>6. 業種特有リスク：中</h3><p>セクター特性上、景気感応度が中程度にあり、業績変動のリスクが中程度に存在します。<｜begin▁of▁sentence｜></p>
+        </div>
+
+        <h2>投資推奨</h2>
+        <div class="recommendation-box">
+            <p>総合推: HOLD</p><p>信頼度: 中</p><p>目標株価レンジ: 算出不能（十分なデータなし）</p><p>投資期間: 短期から中期</p><p>主要な強み:</p><p>ファンダメンタル分析は企業の健全性を示しており、業界内での競争力は良好です。企業収益は安定しています。追加指標のROICはプラス成長を示しています。</p><p>主要な懸念点:</p><p>リスク評価は複数の要素を考慮する必要性を示しています。PERバンドの位置付けは明確でないため、割高な株価の可能性があります。セクター内ポジションは競争的ですが、先行き不透明です。全体的なリスク評価は中程度です。</p><p>アクションプラン:</p><p>現時点での新規買いは推しません。保有株は現状維持とします。今後の決算発表でPERが20倍を下回るか、ROICが15パーセント以上増加した場合に買い増しを検討します。少なくとも四半期決算2期分の実績を待って判断します。<｜begin▁of▁sentence｜></p>
+        </div>
+
+        <p class="disclaimer">
+            本レポートはAIによる分析結果であり、投資を推奨するものではありません。<br>
+            投資の最終判断は、必ずご自身の責任において行ってください。<br>
+            分析日時: 2025年10月10日 00:19
+        </p>
+    </div>
+</body>
+</html>
